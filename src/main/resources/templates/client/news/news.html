@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="UTF-8" />
+<title>Tin tức</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="latest_blog_area p_120">
+			<div class="container" ng-controller="newsController">
+				<div class="main_title">
+					<h2>Tin tức mới nhất</h2>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 form-label" th:text="'Danh Mục'"></label>
+					<div class="col-sm-9">
+						<select class="form-control" ng-model="searchDTO.categoryId" ng-change="filterByCategory()">
+							<option value="">Tat ca</option>
+							<option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}">
+						</select>
+					</div>
+				</div>
+				<div class="row latest_blog_inner">
+					<div class="col-md-4 " ng-repeat="news in newsList">
+						<div class="l_blog_item box-news">
+							<div class="l_blog_img">
+								<a href="{{ctxPath + '/tin-tuc/' + news.id}}">
+									<div class="img" style="background-image: url({{news.image}});"></div>
+								</a>
+							</div>
+							<div class="l_blog_text">
+								<div class="date">
+									<span>{{news.createdDate}}</span>
+								</div>
+								<a href="{{ctxPath + '/tin-tuc/' + news.id}}"><h4 class="text-wrap">{{news.title}}</h4></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-sm-12 text-center" ng-if="hasMore">
+						<button class="btn btn-danger col-sm-12" ng-click="loadMore()">Xem thêm</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

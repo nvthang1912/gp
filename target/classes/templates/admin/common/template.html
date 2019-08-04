@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">LINKIN
+	VIETNAM</title>
+<meta content="linkin.vn" name="author" />
+<link rel="shortcut icon" th:href="@{/user/images/favicon.png}"
+	type="image/png" />
+<link th:href="@{/user/css/bootstrap.min.css}" rel="stylesheet"
+	type="text/css" />
+<link th:href="@{/user/css/icons.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/user/css/style.css}" rel="stylesheet" type="text/css" />
+<link
+	th:href="@{/user/plugins/datatables/dataTables.bootstrap4.min.css}"
+	rel="stylesheet" type="text/css" />
+<link th:href="@{/user/plugins/datatables/dataTables.checkboxes.css}"
+	rel="stylesheet" type="text/css" />
+<link th:href="@{/user/plugins/datatables/buttons.bootstrap4.min.css}"
+	rel="stylesheet" type="text/css" />
+<link th:href="@{/user/css/jquery.datetimepicker.css}" rel="stylesheet"
+	type="text/css">
+<link th:href="@{/user/css/Treant.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- jQuery  -->
+<script th:src="@{/user/js/jquery.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/user/js/popper.min.js}"></script>
+<script th:src="@{/user/js/bootstrap.min.js}"></script>
+<script th:src="@{/user/js/modernizr.min.js}"></script>
+<script th:src="@{/user/js/detect.js}"></script>
+<script th:src="@{/user/js/fastclick.js}"></script>
+<script th:src="@{/user/js/jquery.slimscroll.js}"></script>
+<script th:src="@{/user/js/jquery.blockUI.js}"></script>
+<script th:src="@{/user/js/waves.js}"></script>
+<script th:src="@{/user/js/jquery.nicescroll.js}"></script>
+<script th:src="@{/user/js/jquery.scrollTo.min.js}"></script>
+<script th:src="@{/user/js/jquery.datetimepicker.full.js}"></script>
+<!-- Required datatable js -->
+<script th:src="@{/user/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script
+	th:src="@{/user/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script
+	th:src="@{/user/plugins/datatables/dataTables.checkboxes.min.js}"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKYjgWlcNdL3U9ZXWQwu04rEjspDuiu_g"
+	type="text/javascript"></script>
+<script th:src="@{/user/js/map-init.js}"></script>
+<script th:src="@{/user/js/raphael.js}"></script>
+<script th:src="@{/user/js/Treant.js}"></script>
+<script th:src="@{/ckfinder/ckfinder.js}"></script>
+<script th:src="@{/ckeditor/ckeditor.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+	$.datetimepicker.setLocale('vi');
+	$(function() {
+		$('input.number').keyup(function(event) {
+
+			// skip for arrow keys
+			if (event.which >= 37 && event.which <= 40)
+				return;
+
+			// format number
+			$(this).val(function(index, value) {
+				return formatNumber(value);
+			});
+		});
+		$('input.number').each(function(index, value) {
+			$(this).val(function(index, value) {
+				return formatNumber(value);
+			});
+		});
+	});
+	function formatNumber(value) {
+		return String(value).replace(/\D/g, "").replace(
+				/\B(?=(\d{3})+(?!\d))/g, ".");
+	}
+	function getOnlyDigit(value) {
+		return String(value).replace(/[^0-9]/g, "");
+	}
+	function parseNumber() {
+		$('input.number').each(function(index, value) {
+			$(this).val(function(index, value) {
+				return getOnlyDigit(value);
+			});
+		});
+		return true;
+	}
+	
+	CKEDITOR.editorConfig = function( config ) {
+		// Define changes to default configuration here. For example:
+		 config.language = 'vi';
+		 config.skin = 'kama';
+		 config.uiColor = '#AADC6E';
+		 config.extraPlugins = 'eqneditor';
+	};
+	
+	var baseUrl = [[@{/ckfinder}]];
+	
+	function setUpEditor(editor) {
+		CKEDITOR.replace(editor, {
+			filebrowserBrowseUrl : baseUrl + '/ckfinder.html',
+			filebrowserImageBrowseUrl : baseUrl + '/ckfinder.html?type=Images',
+			filebrowserFlashBrowseUrl : baseUrl + '/ckfinder.html?type=Flash',
+			filebrowserUploadUrl : baseUrl + '/core/connector/java/connector.java?command=QuickUpload&type=Files',
+			filebrowserImageUploadUrl : baseUrl + '/core/connector/java/connector.java?command=QuickUpload&type=Images',
+			filebrowserFlashUploadUrl : baseUrl + '/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+		});
+	}
+</script>
+
+</head>
+<body class="fixed-left">
+	<div id="preloader">
+		<div id="status">
+			<div class="spinner"></div>
+		</div>
+	</div>
+	<div id="wrapper">
+		<div th:replace="admin/common/leftmenu::left-menu"></div>
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div th:replace="admin/common/header::header"></div>
+				<div class="page-content-wrapper">
+					<div class="container-fluid">
+						<div layout:fragment="content">empty</div>
+					</div>
+				</div>
+			</div>
+			<div th:replace="admin/common/footer::footer"></div>
+		</div>
+	</div>
+	<script th:src="@{/user/js/app.js}"></script>
+</body>
+</html>

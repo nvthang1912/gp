@@ -1,0 +1,65 @@
+<div th:fragment="left-menu" th:remove="tag"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<div class="left side-menu" id="side-menu"
+		onmouseleave="$('#toggle-butt').click();"
+		style="overflow-y: auto; height: 100%;">
+		<button type="button"
+			class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+			<i class="ti-close"></i>
+		</button>
+		<!-- LOGO -->
+		<div class="topbar-left">
+			<div class="text-center">
+				<a th:href="@{/}" class="logo"><img
+					th:src="@{/user/images/logo.png}" width="50%" /></a>
+			</div>
+			<div class="sidebar-inner slimscrollleft">
+				<div class="user-details">
+					<div class="user-info" sec:authorize="isAuthenticated()">
+						<h4 class="font-14 text-primary"
+							sec:authentication="principal.name"></h4>
+						<div>
+							<a th:href="@{/member/profile}"><i
+								class="mdi mdi-account-circle m-r-5 text-muted"></i> Thông Tin <a
+								th:href="@{/member/doi-mat-khau}"><i
+									class="mdi mdi-lock m-r-5 text-muted"></i> Mật Khẩu</a> <a
+								th:href="@{/dang-xuat}"><i
+									class="mdi mdi-logout m-r-5 text-muted"></i>Thoát</a>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div id="sidebar-menu">
+					<ul sec:authorize="hasAnyRole('ROLE_ADMIN')">
+
+						<li><a th:href="@{/admin/person/list}" class="waves-effect">
+								<i class="fa fa-book"></i> <span th:text="'Thành viên'">
+							</span>
+						</a></li>
+						<li><a th:href="@{/admin/album/list}" class="waves-effect">
+								<i class="fa fa-book"></i> <span th:text="'Album'"> </span>
+						</a></li>
+						<li><a th:href="@{/admin/news/list}" class="waves-effect">
+								<i class="fa fa-file"></i> <span th:text="'Tin tức'"> </span>
+						</a></li>
+						<li><a th:href="@{/admin/category/list}" class="waves-effect">
+								<i class="fa fa-file"></i> <span th:text="'Danh mục'"> </span>
+						</a></li>
+						<li><a th:href="@{/admin/info-death/list}"
+							class="waves-effect"> <i class="fa fa-file"></i> <span
+								th:text="'Danh Sách Ngày Giỗ'"> </span>
+						</a></li>
+					</ul>
+					<hr sec:authorize="hasAnyRole('ROLE_ADMIN')" />
+					<ul sec:authorize="hasAnyRole('ROLE_ADMIN')">
+						<li><a th:href="@{/admin/accounts}" class="waves-effect">
+								<i class="fa fa-user"></i> <span th:text="#{user}"> </span>
+						</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>

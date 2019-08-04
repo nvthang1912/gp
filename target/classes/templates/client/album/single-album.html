@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="projects_area p_120">
+			<div class="container">
+				<div class="main_title">
+					<h2 th:text="${album.name}"></h2>
+				</div>
+				<div class="projects_inner row gallery">
+					<div th:each="albumImage: ${album.albumImageDTOs}" class=" col-md-3">
+						<a th:href="${albumImage.image}">
+						<div class="img" th:style="'background-image: url(' + ${albumImage.image} + ');'"></div>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.gallery a').simpleLightbox();
+			});
+		</script>
+	</div>
+</body>
+</html>

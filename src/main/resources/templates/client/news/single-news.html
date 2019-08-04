@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="UTF-8" />
+<title>Tin tức</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="blog_area single-post-area p_120">
+			<div class="container">
+				<div class="main_title">
+					<h2 th:utext="${news.title}">Tin tức mới nhất</h2>
+					<p>
+						Ngày: <i th:utext="${news.createdDate}"></i>
+					</p>
+				</div>
+				<div class=" posts-list">
+					<div class="single-post row">
+						<div class="col-lg-12 col-md-12 blog_details" th:utext="${news.content}"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

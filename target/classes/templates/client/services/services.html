@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="client/common/template">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Giới thiệu</title>
+</head>
+
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<!-- inner banner -->
+		<div class="inner-banner" id="home">
+			<div class="container">
+			</div>
+		</div>
+		<!-- //inner banner -->
+
+		<!-- page details -->
+		<div class="breadcrumb-agile">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Home</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Services</li>
+			</ol>
+		</div>
+		<!-- //page details -->
+
+		<!-- banner bottom -->
+		<section class="banner_bottom py-sm-5 py-4">
+			<div class="container py-lg-5">
+				<h3 class="heading mb-5">Our Services</h3>
+				<div class="row text-center">
+					<div class="col-lg-4 col-md-6 how-icon">
+						<div class="shadow">
+							<div class="grid1-bg">
+							</div>
+							<span class="fa fa-cogs" aria-hidden="true"></span>
+							<div class=" how-grid">
+								<h3 class="mt-3">The Creative Agency </h3>
+								<p class="mt-3">Integer pulvinar leo idut viver feugiat. Pellentesque libero justo orci
+									fermentum dolor.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 how-icon1 mt-md-0 mt-4">
+						<div class="shadow">
+							<div class="grid1-bg1">
+							</div>
+							<span class="fa fa-headphones" aria-hidden="true"></span>
+							<div class="how-grid">
+								<h3 class="mt-3">Experienced Staff </h3>
+								<p class="mt-3">Integer pulvinar leo idut viver feugiat. Pellentesque libero justo orci
+									fermentum dolor.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 how-icon2 mt-lg-0 mt-4">
+						<div class="shadow">
+							<div class="grid1-bg2">
+							</div>
+							<span class="fa fa-calendar" aria-hidden="true"></span>
+							<div class="how-grid">
+								<h3 class="mt-3">Development Program</h3>
+								<p class="mt-3">Integer pulvinar leo idut viver feugiat. Pellentesque libero justo orci
+									fermentum dolor.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 how-icon3 mt-4">
+						<div class="shadow">
+							<div class="grid1-bg">
+							</div>
+							<span class="fa fa-cogs" aria-hidden="true"></span>
+							<div class=" how-grid">
+								<h3 class="mt-3">The Creative Agency </h3>
+								<p class="mt-3">Integer pulvinar leo idut viver feugiat. Pellentesque libero justo orci
+									fermentum dolor.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 how-icon4 mt-4">
+						<div class="shadow">
+							<div class="grid1-bg1">
+							</div>
+							<span class="fa fa-headphones" aria-hidden="true"></span>
+							<div class="how-grid">
+								<h3 class="mt-3">Experienced Staff </h3>
+								<p class="mt-3">Integer pulvinar leo idut viver feugiat. Pellentesque libero justo orci
+									fermentum dolor.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 how-icon5 mt-4">
+						<div class="shadow">
+							<div class="grid1-bg2">
+							</div>
+							<span class="fa fa-calendar" aria-hidden="true"></span>
+							<div class="how-grid">
+								<h3 class="mt-3">Development Program</h3>
+								<p class="mt-3">Integer pulvinar leo idut viver feugiat. Pellentesque libero justo orci
+									fermentum dolor.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //banner bottom -->
+
+		<!-- text -->
+		<div class="text py-lg-5 py-5 text-center" id="text">
+			<div class="container py-lg-5 py-md-3">
+				<div class="row">
+					<div class="col-md-12">
+						<h5 class="text-wh">Traditional / Creative Agencies Also tends to Cover</h5>
+						<p>Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.
+							Vestibulum
+							at dui nunc. Nulla viverra pharetra sem, eget pulvinar neque pharetra ac int. lorem ipsum
+							Vestibulum. placerat placerat dolor. Vestibulum at dui nunc. Nullam eu elit neque lectus.
+						</p>
+						<div class="text-center mt-3">
+							<a href="contact.html" class="text-capitalize mr-2 work btn">Get In Touch </a>
+							<a href="Projects.html" class="text-capitalize mr-2 work btn">Find Projects </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //text -->
+
+
+		<!-- Blog section -->
+		<section class="blog py-5" id="blog">
+			<div class="container py-lg-5">
+				<h3 class="heading mb-5">Checkout Our Blog Posts</h3>
+				<div class="row">
+					<div class="col-lg-4 col-md-6">
+						<img th:src="@{/client/images/blog1.jpg}" class="img-fluid" alt="Blog Post1">
+						<h4 class="my-3">Pellentesque libero justo.</h4>
+						<p>Integer pulvinar leo id viverra feugiat sed. Pellentesque libero ut justo, semper ate tempus
+							vel,
+							ultrices in ligula viverra.</p>
+						<p class="mt-1"><span class="fa fa-calendar" aria-hidden="true"></span> 13 Dec 2019</p>
+					</div>
+					<div class="col-lg-4 col-md-6 mt-md-0 mt-5">
+						<img th:src="@{/client/images/blog2.jpg}" class="img-fluid" alt="Blog Post1">
+						<h4 class="my-3">Pellentesque libero sed.</h4>
+						<p>Integer pulvinar leo id viverra feugiat sed. Pellentesque libero ut justo, semper ate tempus
+							vel,
+							ultrices in ligula viverra.</p>
+						<p class="mt-1"><span class="fa fa-calendar" aria-hidden="true"></span> 14 Dec 2019</p>
+					</div>
+					<div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
+						<img th:src="@{/client/images/blog3.jpg}" class="img-fluid" alt="Blog Post1">
+						<h4 class="my-3">Pellentesque et tempus.</h4>
+						<p>Integer pulvinar leo id viverra feugiat sed. Pellentesque libero ut justo, semper ate tempus
+							vel,
+							ultrices in ligula viverra.</p>
+						<p class="mt-1"><span class="fa fa-calendar" aria-hidden="true"></span> 15 Dec 2019</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //Blog section -->
+
+		<!-- brands -->
+		<section class="brands py-5" id="brands">
+			<div class="container py-lg-0">
+				<div class="row text-center">
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-connectdevelop" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-empire" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-ioxhost" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-first-order" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3 mt-sm-0 mt-4">
+						<a href="#"><span class="fa fa-joomla" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3 mt-sm-0 mt-4">
+						<a href="#"><span class="fa fa-dropbox" aria-hidden="true"></span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- brands -->
+	</div>
+</body>
+
+</html>

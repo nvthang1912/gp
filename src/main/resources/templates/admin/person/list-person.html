@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/common/template">
+<head>
+<meta charset="UTF-8" />
+<title th:text="'Gia Phả'"></title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<script>
+			$(function(){
+				$("#add-person #deathday").datetimepicker({ format : 'd/m/Y', timepicker:false });
+				$("#update-person #deathday").datetimepicker({ format : 'd/m/Y', timepicker:false });
+			});
+		</script>
+		<div class="row">
+			<div class="col-12">
+				<div class="card m-b-30">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<h4 class="mt-0 header-title" th:text="'Gia Phả'"></h4>
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<a data-toggle="modal" href="" data-target="#add-person" class="pull-right btn btn-primary"><img th:src="@{/user/images/add.png}"
+									height="20" />Thêm mới</a>
+							</div>
+						</div>
+						<hr />
+						<div class="row">
+							<div class="col-md-12 col-md-12">
+								<div class="table-responsive">
+									<table id="datatable" class="table table-bordered">
+										<thead>
+											<tr>
+												<th></th>
+												<th th:text="'ID'"></th>
+												<th th:text="'Tên'"></th>
+												<th th:text="'Ảnh'"></th>
+												<th th:text="'Địa Chỉ'"></th>
+												<th th:text="'Số Điện Thoại'"></th>
+												<th th:text="'Ngày Mất'"></th>
+												<th th:text="'Tên Cha'"></th>
+												<th th:text="'Thế hệ'"></th>
+												<th th:text="#{text.option}"></th>
+											</tr>
+										</thead>
+										<tfoot>
+											<tr>
+												<td colspan="9"><button id="delButt" class="btn btn-danger">
+														<i class="fa fa-trash"></i>Xóa tất
+													</button></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" th:text="'Bạn muốn xoá người này?'"></div>
+					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{text.no}"></button>
+						<a class="btn btn-danger btn-ok" style="color: white;" th:text="#{text.delete}"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="confirm-delete-multi" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" th:text="'Bạn muốn xoá người này?'"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{text.no}"></button>
+						<button class="btn btn-danger btn-ok" style="color: white;" th:text="#{text.delete}"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="please-select-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">Vui lòng tích chọn các dòng để xoá?</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{text.cancel}"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="add-person" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">
+							<span th:text="'Thêm Nội Dung'" th:remove="tag"></span>
+						</h6>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" onsubmit="submitForm();return false;" autocomplete="off">
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Tên'"></label>
+								<div class="col-sm-9">
+									<input required="required" class="form-control" type="text" th:placeholder="'Tên'" id="name" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Ảnh'"></label>
+								<div class="col-sm-5">
+									<input class="form-control" type="text" th:placeholder="'Ảnh đại diện'" id="image" />
+								</div>
+								<div class="col-sm-3">
+									<input class="btn btn-primary" type="button" value="Browse Image" onclick="browseServer( 'Images:/', 'xImagePath',setAddNewsAvatar);" />
+								</div>
+								<label class="col-sm-3"></label>
+								<div class="col-sm-9">
+									<img id="imgpreview" src="" class="img-fluid" style="max-width: 100px; max-height: 100px;" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Địa Chỉ'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Địa Chỉ'" id="address" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Số Điện Thoại'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Số Điện Thoại'" id="phone" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Ngày Mất'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Ngày Mất'" id="deathday" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Cha'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Cha'" id="father" />
+									<input class="form-control" type="hidden" th:placeholder="'Cha'" id="parentId" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3"></div>
+								<div class="form-group col-sm-9">
+									<div>
+										<button id="addButton" type="submit" style="width: 60%;" class="btn btn-primary waves-effect waves-light" th:text="#{text.add}"></button>
+										<button type="reset" class="btn btn-warning waves-effect waves-light" th:text="#{text.reset}"></button>
+										<button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" th:text="#{text.cancel}"></button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="update-person" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">
+							<span th:text="'Cập nhật'" th:remove="tag"></span>
+						</h6>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" onsubmit="updateForm();return false;">
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Tên'"></label>
+								<div class="col-sm-9">
+									<input required="required" class="form-control" type="text" th:placeholder="'Tên'" id="name" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Ảnh'"></label>
+								<div class="col-sm-5">
+									<input class="form-control" type="text" th:placeholder="'Ảnh đại diện'" id="image" />
+								</div>
+								<div class="col-sm-3">
+									<input class="btn btn-primary" type="button" value="Browse Image" onclick="browseServer( 'Images:/', 'xImagePath',setUpdateNewsAvatar);" />
+								</div>
+								<label class="col-sm-3"></label>
+								<div class="col-sm-9">
+									<img id="imgpreview" src="" class="img-fluid" style="max-width: 100px; max-height: 100px;" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Địa Chỉ'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Địa Chỉ'" id="address" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Số Điện Thoại'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Số Điện Thoại'" id="phone" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Ngày Mất'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Ngày Mất'" id="deathday" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 form-label" th:text="'Cha'"></label>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" th:placeholder="'Cha'" id="father" />
+									<input class="form-control" type="hidden" th:placeholder="'Cha'" id="parentId" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3"></div>
+								<div class="form-group col-sm-9">
+									<div>
+										<button id="addButton" type="submit" style="width: 60%;" class="btn btn-primary waves-effect waves-light" th:text="#{text.update}"></button>
+										<button type="reset" class="btn btn-warning waves-effect waves-light" th:text="#{text.reset}"></button>
+										<button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" th:text="#{text.cancel}"></button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" th:inline="javascript">
+		var vietnameseUrl = [[@{/user/plugins/datatables/Vietnamese.json}]];
+	    var url = [[@{/admin/person/list}]];
+	    var addURL = [[@{/admin/person/add}]];
+	    var editUrl = [[@{/admin/person/update}]];
+	    var delUrl = [[@{/admin/person/delete}]];
+	    var delMultiUrl = [[@{/admin/person/delete-multi}]];
+	    var csrf_token = [[${_csrf.token}]];
+	    var searchHolderText = 'Tìm theo tên';
+	    
+	    var id = "";
+	    var table;
+		$(document).ready(function() {
+			table = $('#datatable').DataTable( {
+				"processing": true,
+		        "serverSide": true,
+		        "ajax": {
+		        	type:"POST",
+		            url: url,
+		            dataType: "json",
+		            contentType: "application/json",
+		            headers: {'X-CSRF-TOKEN': csrf_token},
+		            data: function (d) {
+		            	return JSON.stringify( d );
+		            }
+		        },
+		        "lengthMenu": [10, 25, 50, 100, 200],
+		        "columns": [
+		            { "data": "id" },
+		            { "data": "id" },
+		            { "data": "name" },
+		            { "data": "image" },
+		            { "data": "address" },
+		            { "data": "phone" },
+		            { "data": "deathday" },
+		            { "data": "parentName" },
+		            { "data": "generation" },
+		            { "data": "id" }
+		        ],
+		        "order": [2, "desc"],
+		        "select": {
+		        	'style': 'multi'
+		        },
+		        "columnDefs": [
+				{
+				    'targets': 0,
+				    'checkboxes': {
+				       'selectRow': true
+				    }
+				 },
+				 {
+						"render": function ( data, type, row ) {
+					            return "<img src='" + row.image+ "' width='100' />";
+		                 },
+		                "orderable": false,
+	   	                "targets": 3
+		   	         },
+				 {
+						"render": function ( data, type, row ) {
+			                    if (data != null) {
+			                    	return data;
+			                    }
+					            return 'Không Có';
+		                 },
+		                "orderable": false,
+	   	                "targets": 7
+	   	         },
+				 {
+					"render": function ( data, type, row ) {
+		                    var content = '<button class="btn btn-primary" data-toggle="modal" data-target="#update-person" data-name="' +(row.name)+'" data-image="' +(row.image)+'" data-address="' +(row.address)+'"data-phone="' +(row.phone)+'"data-deathday="' +(row.deathday)+'" data-parentid="' +(row.parentId)+'" data-parentname="' +(row.parentName)+'"><i class="fa fa-pencil"></i>Sửa</button>'
+		                    +'<button class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-keyword="' + encodeURI(row.name)+ '"><i class="fa fa-trash"></i>Xóa</button>'
+				            return content;
+	                 },
+	                "orderable": false,
+   	                "targets": 9
+   	            }
+		        ],
+		        "language": {
+		            "url": vietnameseUrl,
+		            "searchPlaceholder": searchHolderText
+		        },
+		        "initComplete": function(settings, json) {
+		        },
+	        });
+			
+			$('#datatable tbody').on( 'click', 'button', function () {
+				var data = table.row( $(this).parents('tr') ).data();
+				id = data.id;
+		    });
+			
+			$('#datatable tbody').on('click', 'td.details-control', function () {
+		        var tr = $(this).closest('tr');
+		        var row = table.row( tr );
+		 
+		        if ( row.child.isShown() ) {
+		            row.child.hide();
+		            tr.removeClass('shown');
+		        }
+		        else {
+		            // Open this row
+		            row.child(format(row.data())).show();
+		            tr.addClass('shown');
+		        }
+		    } );
+			
+			$('#confirm-delete').on('click', '.btn-ok', function(e) {
+			  	var $modalDiv = $(e.delegateTarget);
+				  $.get(delUrl + '/' + id).then(function() {
+				     $modalDiv.modal('hide');
+				     table.draw();
+				  }, function() {
+					  $modalDiv.find('div.modal-body').html('<b>Thành viên đang sử dụng!</b>');
+				  });
+			});
+			
+			//triggered when modal is about to be shown
+			$('#update-person').on('show.bs.modal', function(e) {
+			    //get data-id attribute of the clicked element
+			    var name = $(e.relatedTarget).data('name');
+			    var image = $(e.relatedTarget).data('image');
+			    var address = $(e.relatedTarget).data('address');
+			    var phone = $(e.relatedTarget).data('phone');
+			    var deathday = $(e.relatedTarget).data('deathday');
+			    var parentid = $(e.relatedTarget).data('parentid');
+			    var parentName = $(e.relatedTarget).data('parentname');
+			    //populate the textbox
+			    $("#update-person #name").val(name);
+			    $("#update-person #image").val(image);
+				$("#update-person #address").val(address);
+				$("#update-person #phone").val(phone);
+				$("#update-person #deathday").val(deathday);
+				$("#update-person #parentId").val(parentid);
+				$("#update-person #father").val(parentName);
+				
+				$("#update-person #imgpreview").attr("src", image);
+			});
+			//triggered when modal is about to be shown
+			$('#confirm-delete').on('show.bs.modal', function(e) {
+			    //get data-id attribute of the clicked element
+			    var keyword = $(e.relatedTarget).data('keyword');
+			    //populate the textbox
+			    $(e.currentTarget).find('div.modal-body').html('<strong>' + decodeURI(keyword)  + '</strong>');
+			});
+			// Handle form submission event
+			var rowIds = [];
+			$('#delButt').on('click', function(e){
+			    var rows_selected = table.column(0).checkboxes.selected();
+			    rowIds = [];
+			    // Iterate over all selected checkboxes
+			    $.each(rows_selected, function(index, rowId){
+			       // Create a hidden element
+			       rowIds.push(rowId);
+			    });
+			    if (rows_selected.length == 0) {
+			    	$("#please-select-dialog").modal('show');
+			    } else {
+			    	$("#confirm-delete-multi").modal('show');
+			    }
+		 	});
+			$('#confirm-delete-multi').on('click', '.btn-ok', function(e) {
+				var $modalDiv = $(e.delegateTarget);
+				$.get(delMultiUrl + '/' + rowIds.toString()).then(function() {
+					 $modalDiv.modal('hide');
+					 table.draw();
+			    });
+			});
+	   
+			$("#add-person #father").autocomplete({
+			    source: function( request, response ) {
+			        $.ajax({
+			        	contentType:"application/json",
+			            dataType: "json",
+			            type : 'post',
+			            url: url,
+			            headers: {'X-CSRF-TOKEN': csrf_token},
+				        data: JSON.stringify({"start": 0, "search":{"value": $("#father").val()}}),
+			            success: function(data) {
+			            	  response($.map( data.data, function( item ) {
+			                      return {
+			                        label: item.name,
+			                        value: "ID: " + item.id + " - " + item.name + " - " + "Thế hệ: " + item.generation,
+			                        data: item
+			                      }
+			                    }));
+			            },
+			            error: function(data) {
+			            }
+			        });
+			    },
+			    minLength: 0,
+	            select: function (event, ui) {                    
+	                $("#add-person #parentId").val(ui.item.data.id);
+	            }  
+			});
+			
+			$("#update-person #father").autocomplete({
+			    source: function( request, response ) {
+			        $.ajax({
+			        	contentType:"application/json",
+			            dataType: "json",
+			            type : 'post',
+			            url: url,
+			            headers: {'X-CSRF-TOKEN': csrf_token},
+				        data: JSON.stringify({"start": 0, "search":{"value": $("#update-person #father").val()}}),
+			            success: function(data) {
+			            	  response($.map( data.data, function( item ) {
+			                      return {
+			                        label: item.name,
+			                        value: "ID: " + item.id + " - " + item.name + " - " + "Thế hệ: " + item.generation,
+			                        data: item
+			                      }
+			                    }));
+			            },
+			            error: function(data) {
+			            }
+			        });
+			    },
+			    minLength: 0,
+			    select: function (event, ui) {                    
+			    	$("#update-person #parentId").val(ui.item.data.id);
+	            } 
+			});
+		});
+		
+		function submitForm() {
+			var name = $("#add-person #name").val();
+			var image = $("#add-person #image").val(); 
+			var address = $("#add-person #address").val();
+			var phone = $("#add-person #phone").val();
+			var deathday = $("#add-person #deathday").val();
+			var parentId = $("#add-person #parentId").val();
+			$.ajax({
+		        url : addURL,
+		        type: 'POST',
+		        dataType: "json",
+	            contentType: "application/json",
+	            headers: {'X-CSRF-TOKEN': csrf_token},
+		        data: JSON.stringify({"name":name,"image":image,"address":address,"phone":phone,"deathday":deathday,"parentId":parentId}),
+		        success: function(data){
+		        	$("#add-person #name").val(null);
+		        	$("#add-person #image").val(null);
+		        	$("#add-person #imgpreview").attr("src", "");
+		        	$("#add-person #address").val(null);
+		        	$("#add-person #phone").val(null);
+		        	$("#add-person #deathday").val(null);
+		        	$('#add-person').modal('hide');
+			    	table.draw();
+			    },
+		        error: function(){
+		        	alert("Loi xay ra");
+		        }
+		    });
+			
+			return false;
+		}
+		
+		function updateForm() {
+			var name = $("#update-person #name").val();
+			var image = $("#update-person #image").val(); 
+			var address = $("#update-person #address").val();
+			var phone = $("#update-person #phone").val();
+			var deathday = $("#update-person #deathday").val();
+			var parentId = $("#update-person #parentId").val();
+			$.ajax({
+		        url : editUrl,
+		        type: 'PUT',
+		        dataType: "json",
+	            contentType: "application/json",
+	            headers: {'X-CSRF-TOKEN': csrf_token},
+		        data: JSON.stringify({"id": id,"name":name,"image":image,"address":address,"phone":phone,"deathday":deathday,"parentId":parentId}),
+		        success: function(){
+		        	$("#update-person #name").val(null);
+		        	$("#update-person #image").val(null);
+		        	$("#update-person #imgpreview").attr("src", "");
+		        	$("#update-person #address").val(null);
+		        	$("#update-person #phone").val(null);
+		        	$("#update-person #deathday").val(null);
+		        	$("#update-person #parentId").val(null);
+		        	$('#update-person').modal('hide');
+			    	table.draw();
+			    },
+		        error: function(){
+		        	alert("Loi xay ra");
+		        }
+		    });
+			return false;
+		}
+		function browseServer(startupPath, functionData, callback) {
+			var finder = new CKFinder();
+			finder.basePath = '../';
+			finder.startupPath = startupPath;
+			finder.selectActionFunction = callback;
+			finder.selectActionData = functionData;
+			finder.popup();
+		}
+		function setAddNewsAvatar(fileUrl, data) {
+			$('#add-person #image').val(fileUrl);
+			$("#add-person #imgpreview").attr("src", fileUrl);
+		}
+		function setUpdateNewsAvatar(fileUrl, data) {
+			$('#update-person #image').val(fileUrl);
+			$("#update-person #imgpreview").attr("src", fileUrl);
+		}
+		
+		
+	</script>
+	</div>
+</body>
+</html>

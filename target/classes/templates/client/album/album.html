@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="UTF-8" />
+<title>Album</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="latest_blog_area p_120">
+			<div class="container" ng-controller="albumController">
+				<div class="main_title">
+					<h2>Danh Sách Album</h2>
+				</div>
+				<div class="row latest_blog_inner">
+					<div class="col-md-4" ng-repeat="album in albumList">
+						<div class="l_blog_item box-news">
+							<div class="l_blog_img">
+								<a href="{{ctxPath + '/album/' + album.id}}">
+									<div class="img" style="background-image: url({{album.albumImageDTOs[0].image}});"></div>
+								</a>
+							</div>
+							<div class="l_blog_text">
+								<a href="{{ctxPath + '/album/' + album.id}}"><h4 class="text-wrap">{{album.name}}</h4></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-sm-12 text-center" ng-if="hasMore">
+						<button class="btn btn-danger col-sm-12" ng-click="loadMore()">Xem thêm</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

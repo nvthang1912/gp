@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="UTF-8" />
+<title th:text="'Lỗi 404'"></title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="s2 s3">
+			<div class="container">
+				<div class="row">
+					<div class="box">
+						<h4 class="text-primary">Có lẽ như bạn truy cập sai đường dẫn. Bạn vui lòng thử lại!</h4>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

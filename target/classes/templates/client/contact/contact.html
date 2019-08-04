@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="client/common/template">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Liên hệ</title>
+</head>
+
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<!-- inner banner -->
+		<div class="inner-banner" id="home">
+			<div class="container">
+			</div>
+		</div>
+		<!-- //inner banner -->
+
+		<!-- page details -->
+		<div class="breadcrumb-agile">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Home</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Contact</li>
+			</ol>
+		</div>
+		<!-- //page details -->
+
+		<!-- contact -->
+		<div class="contact py-sm-5 py-4" id="contact">
+			<div class="container py-lg-3">
+				<h3 class="heading mb-4">Contact Us</h3>
+				<div class="row pt-lg-4">
+					<div class="col-lg-5">
+						<div class="w3-contact-left">
+							<h4 class="about-left-agile mb-4">Contact Information </h4>
+							<p class="mb-4">Integer pulvinar leo id viverra feugiat. Pellentesque libero justo, semper
+								at tempus
+								vel, ultrices insed ligula. Nulla sollicit sed.</p>
+							<p><span class="fa fa-map-marker mr-2"></span> Sydney, New South Wales, Australia.</p>
+							<hr>
+							<p><span class="fa fa-phone mr-2"></span> +012 898 909 2317</p>
+							<hr>
+							<p><span class="fa fa-envelope-open mr-2"></span><a href="mailto:info@example.com"
+									class="ml-3">mail@example.com</a></p>
+						</div>
+					</div>
+					<div class="col-lg-7 mt-lg-0 mt-5">
+						<!-- register form grid -->
+						<div class="register-top1">
+							<form action="#" method="post" class="register-wthree">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											<input class="form-control" type="text" placeholder="Enter Your First Name"
+												name="name" required="">
+										</div>
+										<div class="col-md-6 mt-md-0 mt-4">
+											<input class="form-control" type="text" placeholder="Enter Your Last Name"
+												name="name" required="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											<input class="form-control" type="text" placeholder="Enter Mobile Number"
+												name="mobile" required="">
+										</div>
+										<div class="col-md-6 mt-md-0 mt-4">
+											<input class="form-control" type="email" placeholder="Enter Email Id"
+												name="email" required="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-12">
+											<textarea placeholder="Enter your message here" name="message"
+												class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col-md-12">
+										<button type="submit"
+											class="btn btn-aasana-w3 btn-block w-100 text-uppercase">Send</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!--  //register form grid ends here -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //contact-->
+		<!-- map -->
+		<div class="w3l-map p-2">
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d848295.9861393345!2d150.37152490226384!3d-33.846975938661174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney+NSW%2C+Australia!5e0!3m2!1sen!2sin!4v1515557909959"></iframe>
+		</div>
+		<!-- //map -->
+
+
+		<!-- brands -->
+		<section class="brands py-5" id="brands">
+			<div class="container py-lg-0">
+				<div class="row text-center">
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-connectdevelop" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-empire" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-ioxhost" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-first-order" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3 mt-sm-0 mt-4">
+						<a href="#"><span class="fa fa-joomla" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3 mt-sm-0 mt-4">
+						<a href="#"><span class="fa fa-dropbox" aria-hidden="true"></span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- brands -->
+	</div>
+</body>
+
+</html>

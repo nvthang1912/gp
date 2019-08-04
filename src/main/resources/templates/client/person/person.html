@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Gia Phả</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="latest_blog_area p_120">
+			<div class="banner_inner d-flex align-items-center">
+				<div class="container">
+					<div class="col-md-12 col-sm-12">
+						<div class="card m-b-30">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-12" id="basic-example"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="dialog-info"></div>
+					<br>
+					<div class="col-md-12 col-sm-12">
+						<h4 class="mt-0 header-title">Thành viên dòng họ</h4>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-12 col-md-12">
+							<div class="table-responsive">
+								<table id="datatable" class="table table-bordered gallery">
+									<thead>
+										<tr>
+											<th th:text="'ID'"></th>
+											<th th:text="'Tên'"></th>
+											<th th:text="'Ảnh'"></th>
+											<th th:text="'Địa Chỉ'"></th>
+											<th th:text="'Số Điện Thoại'"></th>
+											<th th:text="'Ngày Mất'"></th>
+											<th th:text="'Tên Cha'"></th>
+										    <th th:text="'Thế Hệ'"></th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" th:inline="javascript">
+		var vietnameseUrl = [[@{/user/plugins/datatables/Vietnamese.json}]];
+	    var url = [[@{/gia-pha}]];
+	    var csrf_token = [[${_csrf.token}]];
+	    var searchHolderText = 'Tìm theo tên';
+	    var id = "";
+	    var table;
+	    var urlTree = [[@{/family-tree}]];
+		var csrf_token = [[${_csrf.token}]];
+		$(document).ready(function() {
+			table = $('#datatable').DataTable({
+				"processing": true,
+		        "serverSide": true,
+		        "ajax": {
+		        	type:"POST",
+		            url: url,
+		            dataType: "json",
+		            contentType: "application/json",
+		            headers: {'X-CSRF-TOKEN': csrf_token},
+		            data: function ( d ) {
+		            	if (typeof $('#target') != 'undefined') {
+		            		d.target = $('#target').val();
+		            		console.log(d.target);
+		            	}
+		            	if (typeof $('#status') != 'undefined') {
+		            		d.status = $('#status').val();
+		            		console.log(d.status);
+		            	}
+		            	return JSON.stringify( d );
+		            }
+		        },
+		        "columns": [
+				            { "data": "id" },
+				            { "data": "name" },
+				            { "data": "image" },
+				            { "data": "address" },
+				            { "data": "phone" },
+				            { "data": "deathday" },
+				            { "data": "parentName" },
+				            { "data": "generation" }
+				 ],
+				 "columnDefs": [
+					 {
+							"render": function ( data, type, row ) {
+						            return "<a href='" + row.image+ "'><img src='" + row.image+ "' width='100' /></a>";
+			                 },
+			                "orderable": false,
+		   	                "targets": 2
+			   	         },
+			   	      {
+								"render": function ( data, type, row ) {
+					                    if (data != null) {
+					                    	return data;
+					                    }
+							            return 'Không Có';
+				                 },
+				                "orderable": false,
+			   	                "targets": 6
+			   	         },
+				 ],
+		        "language": {
+		            "url": vietnameseUrl,
+		            searchPlaceholder: searchHolderText
+		        },
+		        "initComplete": function(settings, json) {
+		        	
+		          }
+	        });
+			
+			$.ajax({
+		        url : urlTree,
+		        type: 'GET',
+		        dataType: "json",
+	            contentType: "application/json",
+		        success: function(data){
+					var chart_config = {
+							chart : {
+								container : "#basic-example",
+
+								connectors : {
+									type : 'step'
+								},
+								node : {
+									HTMLclass : 'nodeExample1'
+								}
+							},
+							nodeStructure : data
+						};
+
+						new Treant(chart_config,null, $);
+			    },
+		        error: function(){
+		        	alert("Không có dữ liệu");
+		        }
+		    });
+	    });
+	</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0 , maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<link rel="shortcut icon" th:href="@{/client/images/favicon.png}"
+	type="image/png" />
+<link rel="icon" th:href="@{/client/images/favicon.png}"
+	type="image/png" />
+<title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE"
+	th:text="''"></title>
+<meta th:content="#{page.slogan}" name="description" />
+<meta content="http://linkin.vn" name="author" />
+
+<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+<link
+	href="//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/client/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/client/css/font-awesome.min.css}" type="text/css" media="all"/>
+<link rel="stylesheet" th:href="@{/client/css/style.css}" type="text/css" media="all"/>
+<link rel="stylesheet" th:href="@{/client/css/responsive.css}" />
+<link rel="stylesheet" th:href="@{/client/vendors/linericon/style.css}" />
+<link rel="stylesheet" th:href="@{/client/vendors/owl-carousel/owl.carousel.min.css}" />
+<link rel="stylesheet" th:href="@{/client/vendors/lightbox/simpleLightbox.css}" />
+<link rel="stylesheet" th:href="@{/client/vendors/nice-select/css/nice-select.css}" />
+<link rel="stylesheet" th:href="@{/client/vendors/animate-css/animate.css}" />
+<link rel="stylesheet" th:href="@{/client/vendors/flaticon/flaticon.css}" />
+<link th:href="@{/user/plugins/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/user/plugins/datatables/dataTables.checkboxes.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/user/plugins/datatables/buttons.bootstrap4.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/client/css/simplelightbox.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/client/css/Treant.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/client/css/basic-example.css}" rel="stylesheet" type="text/css" />
+
+<link th:href="@{/client/css/flexslider.css}" rel="stylesheet" type="text/css" media="screen" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script th:src="@{/client/js/jquery.flexslider.js}"></script>
+
+<script th:src="@{/client/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/client/js/basic-example.js}"></script>
+<script th:src="@{/client/js/popper.js}"></script>
+<script th:src="@{/client/js/bootstrap.min.js}"></script>
+<script th:src="@{/client/js/stellar.js}"></script>
+<script th:src="@{/client/vendors/raphael.js}"></script>
+<script th:src="@{/client/vendors/lightbox/simpleLightbox.min.js}"></script>
+<script th:src="@{/client/vendors/nice-select/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/client/vendors/isotope/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{/client/vendors/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/client/vendors/counter-up/jquery.waypoints.min.js}"></script>
+<script th:src="@{/client/js/theme.js}"></script>
+<script th:src="@{/user/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/user/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/user/plugins/datatables/dataTables.checkboxes.min.js}"></script>
+<script th:src="@{/client/js/simple-lightbox.min.js}"></script>
+<script th:src="@{/client/js/Treant.js}"></script>
+<script type="text/javascript" th:inline=javascript>
+	var ctxPath = [[@{/}]];
+	ctxPath = ctxPath =="/" ? "" : ctxPath;
+	var csrf_token = [[${_csrf.token}]];
+</script>
+<script th:src="@{/client/js/angular.min.js}"></script>
+<script th:src="@{/client/js/app.js}"></script>
+<script th:src="@{/client/js/service.js}"></script>
+<script th:src="@{/client/js/controller.js}"></script>
+</head>
+<body ng-app="root-app">
+	<div th:replace="client/common/header::header"></div>
+	<div layout:fragment="content">empty</div>
+	<div th:replace="client/common/footer::footer"></div>
+</body>
+</html>

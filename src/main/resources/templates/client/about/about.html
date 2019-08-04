@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="client/common/template">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Giới thiệu</title>
+</head>
+
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<!-- inner banner -->
+		<div class="inner-banner" id="home">
+			<div class="container"></div>
+		</div>
+		<!-- //inner banner -->
+
+		<!-- page details -->
+		<div class="breadcrumb-agile">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">About Us</li>
+			</ol>
+		</div>
+		<!-- //page details -->
+
+		<!-- about section content -->
+		<div class="about_section py-sm-5 py-4">
+			<div class="container py-lg-3">
+				<div class="row">
+					<div class="col-lg-6 about_right">
+						<h3 class="heading mb-4">About Us</h3>
+						<p>Suspendisse vitae vulputate ligula, ac ornare urna. Aenean
+							ut volutpat, lacus non bibendum ullamcorper, mi neque cursus
+							augue, vel euismod lorem ipsum non eros. Nullam volutpate
+							condimentum pharetra. Etiam eget dapibus dolor. Aeneanet suscipit
+							nec nisi id dignissim. Nullampos uere quam quis.</p>
+						<p class="my-3">Varius rutrum. Cras in egestas mi. Vestibulum
+							odio lorem, ut lobortis in enim in, vulputate eleifend nisl.
+							Aenean suscipit dolor nisi id dignissim. Nullampos uere quam
+							quis.</p>
+						<h4 class="">
+							<span>20+</span> Years of Experience
+						</h4>
+					</div>
+					<div class="col-lg-6 about-left mt-lg-0 mt-5">
+						<div class="row">
+							<div class="col-6 aboutimg">
+								<img th:src="@{/client/images/about1.jpg}" class="img-fluid" alt="image" /> <img
+									th:src="@{/client/images/about2.jpg}" class="img-fluid" alt="image" />
+							</div>
+							<div class="col-6 aboutimg aboutimg2">
+								<img th:src="@{/client/images/about3.jpg}" class="img-fluid" alt="image" /> <img
+									th:src="@{/client/images/about1.jpg}" class="img-fluid" alt="image" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //about section content -->
+
+		<!-- how it works -->
+		<section class="about py-5" id="how">
+			<div class="container py-md-5">
+				<div class="row about-grids">
+					<div class="col-lg-6 about-left">
+						<h3 class="heading mb-4">What We Do</h3>
+						<p class="mb-3">Integer pulvinar leo id viverra feugiat.
+							Pellentesque libero justo, semper at tempus vel, ultrices in
+							ligula. Nulla sollicit sed.</p>
+						<img th:src="@{/client/images/about.jpg}" alt="" class="img-fluid" />
+					</div>
+					<div class="col-lg-6 grid1 mt-lg-0 mt-4 pl-lg-5">
+						<h4 class="my-3">Pellentesque libero justo, semper at tempus
+							vel, ultrices in ligula libero ut justo.</h4>
+						<p>Integer pulvinar leo id viverra feugiat. Pellentesque
+							libero ut justo, semper at tempus vel, ultrices in ligula. Nulla
+							sollicit udin velit. semper at tempus vel, ultrices in ligula leo
+							sed viverra feugiat Nulla sollicit udin velit.</p>
+						<h5 class="mt-md-4 mt-3 mb-2 how-icon">
+							<span class="fa fa-cubes mr-2"></span> Integer libero justo,
+							semper.
+						</h5>
+						<p>Integer pulvinar leo id viverra feugiat. Pellentesque
+							libero justo, semper at tempus vel, ultrices in ligula.</p>
+						<h5 class="my-2 how-icon1">
+							<span class="fa fa-cogs mr-2"></span> Integer libero justo,
+							semper.
+						</h5>
+						<p>Integer pulvinar leo id viverra feugiat. Pellentesque
+							libero justo, semper at tempus vel, ultrices in ligula. Nulla
+							sollicit.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- how it works -->
+
+		<!-- testimonials -->
+		<section class="clients py-5" id="testi">
+			<div class="container py-xl-5 py-lg-3">
+				<div class="row pb-4">
+					<div class="col-lg-6 about-left">
+						<h3 class="heading mb-4">Testimonials</h3>
+						<p class="mb-3">Integer pulvinar leo id viverra feugiat.
+							Pellentesque libero justo, semper at tempus vel, ultrices in
+							ligula. Nulla sollicit sed.</p>
+					</div>
+					<div class="col-lg-6 csslider infinity" id="slider1">
+						<input type="radio" name="slides" checked="checked" id="slides_1" />
+						<input type="radio" name="slides" id="slides_2" /> <input type="radio" name="slides"
+							id="slides_3" /> <input type="radio" name="slides" id="slides_4" />
+						<ul class="banner_slide_bg">
+							<li>
+								<div class="feedback-top">
+									<p>
+										<span class="fa fa-quote-left"></span> Lorem ipsum dolor sit
+										amet consectetur adipisicing elit sedc dnmo eiusmod. sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+										enim ad minim veniam, quis nostrud exercitation ullamco
+										laboris nisi.
+									</p>
+									<div class="row">
+										<div class="col-3 pr-0">
+											<img th:src="@{/client/images/te1.jpg}" alt=" "
+												class="img-fluid rounded-circle mt-4">
+										</div>
+										<div class="col-9 pl-0">
+											<h4 class="mt-sm-5 mt-4">Mary Jane</h4>
+											<p>Lorem ipsum</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="feedback-top">
+									<p>
+										<span class="fa fa-quote-left"></span> Lorem ipsum dolor sit
+										amet consectetur adipisicing elit sedc dnmo eiusmod. sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+										enim ad minim veniam, quis nostrud exercitation ullamco
+										laboris nisi.
+									</p>
+									<div class="row">
+										<div class="col-3 pr-0">
+											<img th:src="@{/client/images/te2.jpg}" alt=" "
+												class="img-fluid rounded-circle mt-4">
+										</div>
+										<div class="col-9 pl-0">
+											<h4 class="mt-sm-5 mt-4">Steven Wison</h4>
+											<p>Lorem ipsum</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="feedback-top">
+									<p>
+										<span class="fa fa-quote-left"></span> Lorem ipsum dolor sit
+										amet consectetur adipisicing elit sedc dnmo eiusmod. sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+										enim ad minim veniam, quis nostrud exercitation ullamco
+										laboris nisi.
+									</p>
+									<div class="row">
+										<div class="col-3 pr-0">
+											<img th:src="@{/client/images/te3.jpg}" alt=" "
+												class="img-fluid rounded-circle mt-4">
+										</div>
+										<div class="col-9 pl-0">
+											<h4 class="mt-sm-5 mt-4">Mary Jane</h4>
+											<p>Lorem ipsum</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="feedback-top">
+									<p>
+										<span class="fa fa-quote-left"></span> Lorem ipsum dolor sit
+										amet consectetur adipisicing elit sedc dnmo eiusmod. sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+										enim ad minim veniam, quis nostrud exercitation ullamco
+										laboris nisi.
+									</p>
+									<div class="row">
+										<div class="col-3 pr-0">
+											<img th:src="@{/client/images/te4.jpg}" alt=" "
+												class="img-fluid rounded-circle mt-4">
+										</div>
+										<div class="col-9 pl-0">
+											<h4 class="mt-sm-5 mt-4">Mary Jane</h4>
+											<p>Lorem ipsum</p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="navigation">
+							<div>
+								<label for="slides_1"></label> <label for="slides_2"></label> <label
+									for="slides_3"></label> <label for="slides_4"></label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //testimonials -->
+
+		<!-- subscribe -->
+		<section class="stats py-5" id="subscribe">
+			<div class="container py-md-5">
+				<div class="row stat-grids">
+					<div class="col-lg-6 subscribe-left">
+						<h3 class="heading mb-4 text-li">Subscribe To Our Newsletter</h3>
+						<p class="mb-3 text-li">Integer pulvinar leo id viverra
+							feugiat. Pellentesque libero justo, semper at tempus vel,
+							ultrices in ligula. Nulla sollicit ipsum ut Integer pulvinar leo
+							id viverra feugiat. Pellentesque libero justo, semper at tempus
+							vel, ultrices in ligula. Nulla sollicit sed.</p>
+					</div>
+					<div class="col-md-6 grid1 subscribe-right mt-lg-0 mt-4 pl-lg-5">
+						<form action="#" method="post" class="register-wthree">
+							<div class="form-group">
+								<input class="form-control" type="text" placeholder="Enter Your Full Name" name="name"
+									required="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="email" placeholder="Enter Email Id" name="email"
+									required="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" placeholder="Enter Mobile Number" name="mobile"
+									required="">
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<button type="submit"
+										class="btn btn-aasana-w3 btn-block w-100 text-uppercase">Subscribe</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //subscribe -->
+
+		<!-- brands -->
+		<section class="brands py-5" id="brands">
+			<div class="container py-lg-0">
+				<div class="row text-center">
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-connectdevelop" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-empire" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-ioxhost" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3">
+						<a href="#"><span class="fa fa-first-order" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3 mt-sm-0 mt-4">
+						<a href="#"><span class="fa fa-joomla" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-sm-2 col-3 mt-sm-0 mt-4">
+						<a href="#"><span class="fa fa-dropbox" aria-hidden="true"></span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- brands -->
+	</div>
+</body>
+
+</html>

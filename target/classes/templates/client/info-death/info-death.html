@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/common/template">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Danh Sách Ngày Giỗ</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<section class="latest_blog_area p_120">
+			<div class="banner_inner d-flex align-items-center">
+				<div class="container">
+					<div class="col-md-12 col-sm-12">
+						<h3 class="mt-0 header-title">Danh Sách Ngày Giỗ</h3>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-12 col-md-12">
+							<div class="table-responsive">
+								<table id="datatable" class="table table-bordered gallery">
+									<thead>
+										<tr>
+										<tr>
+											<th th:text="'ID'"></th>
+											<th th:text="'Tên Người Mất'"></th>
+											<th th:text="'Địa Chỉ'"></th>
+											<th th:text="'Giới Tính'"></th>
+											<th th:text="'Quê Quán'"></th>
+											<th th:text="'Nghĩa Trang'"></th>
+											<th th:text="'Ngày Sinh'"></th>
+											<th th:text="'Ngày Mất'"></th>
+											<th th:text="'Chú Thích'"></th>
+										</tr>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" th:inline="javascript">
+		var vietnameseUrl = [[@{/user/plugins/datatables/Vietnamese.json}]];
+	    var url = [[@{/ngay-gio}]];
+	    var csrf_token = [[${_csrf.token}]];
+	    var searchHolderText = 'Tìm theo tên';
+	    var id = "";
+	    var table;
+		var csrf_token = [[${_csrf.token}]];
+		$(document).ready(function() {
+			table = $('#datatable').DataTable({
+				"processing": true,
+		        "serverSide": true,
+		        "ajax": {
+		        	type:"POST",
+		            url: url,
+		            dataType: "json",
+		            contentType: "application/json",
+		            headers: {'X-CSRF-TOKEN': csrf_token},
+		            data: function ( d ) {
+		            	return JSON.stringify( d );
+		            }
+		        },
+		        "columns": [
+		        	 { "data": "id" },
+			            { "data": "name" },
+			            { "data": "address" },
+			            { "data": "sex" },
+			            { "data": "homeTown" },
+			            { "data": "cemetery" },
+			            { "data": "birthday" },
+			            { "data": "deathDay" },
+			            { "data": "note" },
+				 ],
+				 "columnDefs": [
+					 {
+					       "render": function ( data, type, row ) {
+					    	   if (data == 2){
+			                    	return "Nữ";
+			                	} else if (data == 1) {
+									return "Nam";
+								}
+			                    return "";
+					       },
+					       "targets": 3
+					   },
+				 ],
+		        "language": {
+		            "url": vietnameseUrl,
+		            searchPlaceholder: searchHolderText
+		        },
+		        "initComplete": function(settings, json) {
+		        	
+		          }
+	        });
+	    });
+	</script>
+	</div>
+</body>
+</html>
